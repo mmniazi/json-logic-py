@@ -594,10 +594,10 @@ class AdditionalJsonLogicTests(unittest.TestCase):
     def test_none_params(self):
         self.assertFalse(jsonLogic({
             'and': [
-                {'<': [None, None]},
-                {'<=': [None, None]},
-                {'>': [None, None]},
-                {'>=': [None, None]}
+                {'<': [None, None, None]},
+                {'<=': [None, None, None]},
+                {'>': [None, None, None]},
+                {'>=': [None, None, None]}
             ]
         }))
 

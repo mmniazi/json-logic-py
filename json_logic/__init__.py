@@ -96,15 +96,6 @@ def _expose_operations():
     return operations
 
 
-def _not_none(fn):
-    def wrapped(*args):
-        if len(args) > 1 and all([arg is None for arg in args]):
-            return False
-        return fn(*args)
-
-    return wrapped
-
-
 # Common operations
 
 def _equal_to(a, b):
@@ -141,7 +132,6 @@ def _not_strict_equal_to(a, b):
     return not _strict_equal_to(a, b)
 
 
-@_not_none
 def _less_than(a, b, c=_no_argument):
     """
     Check that A is less then B (A < B) or
@@ -152,6 +142,8 @@ def _less_than(a, b, c=_no_argument):
     So {"<": ["11", 2, "3"]} will evaluate to False,
     while {"<": ["11", "2", 3]} will evaluate to True.
     """
+    if a is None and b is None:
+        return False
     if _is_numeric(a) or _is_numeric(b):
         try:
             a, b = _to_numeric(a), _to_numeric(b)
@@ -160,7 +152,6 @@ def _less_than(a, b, c=_no_argument):
     return a < b and (c is _no_argument or _less_than(b, c))
 
 
-@_not_none
 def _less_than_or_equal_to(a, b, c=_no_argument):
     """
     Check that A is less then or equal to B (A <= B) or
@@ -171,18 +162,18 @@ def _less_than_or_equal_to(a, b, c=_no_argument):
     So {"<=": ["11", 2, "3"]} will evaluate to False,
     while {"<=": ["11", "2", 3]} will evaluate to True.
     """
+    if a is None and b is None:
+        return False
     return \
         (_less_than(a, b) or _equal_to(a, b)) and \
         (c is _no_argument or _less_than_or_equal_to(b, c))
 
 
-@_not_none
 def _greater_than(a, b):
     """Check that A is greater then B (A > B)."""
     return _less_than(b, a)
 
 
-@_not_none
 def _greater_than_or_equal_to(a, b):
     """Check that A is greater then or equal to B (A >= B)."""
     return _less_than_or_equal_to(b, a)

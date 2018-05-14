@@ -5,11 +5,12 @@ https://packaging.python.org/en/latest/distributing.html
 https://github.com/pypa/sampleproject
 """
 
-# Always prefer setuptools over distutils
-from setuptools import setup, find_packages
 # To use a consistent encoding
 from codecs import open
 from os import path
+
+# Always prefer setuptools over distutils
+from setuptools import setup, find_packages
 
 here = path.abspath(path.dirname(__file__))
 
@@ -18,7 +19,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='json_logic_qubit',
+    name='json_logic_py',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
@@ -26,16 +27,16 @@ setup(
     version='0.9',
 
     description=(
-        'Build complex rules, serialize them as JSON, ' +
-        'and execute them in Python'),
+            'Build complex rules, serialize them as JSON, ' +
+            'and execute them in Python'),
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/qubitdigital/json-logic-py',
+    url='https://github.com/mmniazi/json-logic-py',
 
     # Author details
     author='mohsin.niazi',
-    author_email='mohsin.niazi@qubit.com',
+    author_email='muhammad.mohsin1994@gmail.com',
 
     # Choose your license
     license='MIT',
